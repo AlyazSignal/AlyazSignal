@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- JUDUL WEBSITE -->
+    <title>ALYAZ SIGNAL</title>
+    
+    <!-- FAVICON: Logo di samping judul di browser -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co.com/wFPxLdvR/20260709-151528.png">
+
+    <!-- META TAGS UNTUK SOSIAL MEDIA (Open Graph) -->
+    <meta property="og:title" content="ALYAZ SIGNAL">
+    <meta property="og:description" content="Platform Informasi Pasar Modal & Kalkulator Saham">
+    <meta property="og:image" content="https://i.ibb.co.com/wFPxLdvR/20260709-151528.png">
+    <meta property="og:type" content="website">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .iframe-box {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #050505;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-[#050505] text-slate-100 h-screen flex flex-col overflow-hidden font-sans select-none">
+
+    <!-- HEADER: Background tipis pas mengikuti ukuran logo -->
+    <header class="bg-[#0b0f19] px-2 py-0 text-center border-b border-blue-950/40 shadow-2xl z-50 flex items-center justify-center shrink-0">
+        <img src="https://i.ibb.co.com/wFPxLdvR/20260709-151528.png" alt="Alyaz Signal Logo" class="h-24 max-w-full w-auto object-contain drop-shadow-[0_4px_12px_rgba(59,130,246,0.9)]">
+    </header>
+
+    <!-- KONTEN UTAMA -->
+    <main class="flex-grow bg-[#050505] relative overflow-hidden pb-12 px-1 pt-1">
+        
+        <!-- 1. MENU BERITA -->
+        <div id="view-berita" class="h-full flex flex-col">
+            <div class="flex-grow rounded-lg overflow-hidden border border-blue-950/30 bg-[#050505] shadow-2xl">
+                <iframe src="https://www.idnfinancials.com/id/news" class="iframe-box" title="Berita IDNFinancials"></iframe>
+            </div>
+        </div>
+
+        <!-- 2. MENU SAHAM -->
+        <div id="view-saham" class="hidden h-full flex flex-col space-y-1">
+            <div class="w-full h-[45%] rounded-lg overflow-hidden border border-blue-950/30 bg-[#050505] shrink-0 shadow-xl">
+                <iframe src="https://stockbit.com/" class="iframe-box" title="Grafik IHSG Stockbit"></iframe>
+            </div>
+            <div class="flex-grow flex flex-col">
+                <div class="flex-grow rounded-lg overflow-hidden border border-blue-950/30 bg-[#050505] shadow-xl">
+                    <iframe src="https://stockbit.com/" class="iframe-box" title="Favorite Stockbit"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. MENU PENCARIAN -->
+        <div id="view-cari" class="hidden h-full flex flex-col">
+            <div class="flex-grow rounded-lg overflow-hidden border border-blue-950/30 bg-[#050505] shadow-2xl">
+                <iframe src="https://stockbit.com/" class="iframe-box" title="Pencarian Saham Stockbit"></iframe>
+            </div>
+        </div>
+
+        <!-- 4. MENU KALKULATOR -->
+        <div id="view-kalkulator" class="hidden h-full flex flex-col">
+            <div class="flex-grow rounded-lg overflow-hidden border border-blue-950/30 bg-[#050505] shadow-2xl">
+                <iframe src="https://alyazsignal.github.io/KALKULATOR-SAHAM-ALYAZ-SIGNAL/" class="iframe-box" title="Kalkulator Alyaz Signal"></iframe>
+            </div>
+        </div>
+
+        <!-- 5. MENU LOGIN -->
+        <div id="view-login" class="hidden h-full flex flex-col space-y-1">
+            <div class="grid grid-cols-3 gap-1 shrink-0">
+                <button onclick="gantiSekuritas('https://stockbit.com/login', this)" class="btn-sekuritas bg-blue-600 hover:bg-blue-500 text-white py-1 rounded-md text-[11px] font-semibold transition shadow-md border border-blue-400/30">Stockbit</button>
+                <button onclick="gantiSekuritas('https://www.tuntun.co.id/', this)" class="btn-sekuritas bg-[#0b0f19] text-slate-300 border border-blue-950/60 py-1 rounded-md text-[11px] font-semibold transition hover:bg-blue-950/30">Tuntun</button>
+                <button onclick="gantiSekuritas('https://login.ajaib.co.id/', this)" class="btn-sekuritas bg-[#0b0f19] text-slate-300 border border-blue-950/60 py-1 rounded-md text-[11px] font-semibold transition hover:bg-blue-950/30">Ajaib</button>
+            </div>
+            <div class="flex-grow rounded-lg overflow-hidden border border-blue-950/30 bg-[#050505] shadow-2xl">
+                <iframe id="iframe-login" src="https://stockbit.com/login" class="iframe-box" title="Login Sekuritas"></iframe>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- NAVIGASI BAWAH -->
+    <nav class="bg-[#080c14] border-t border-blue-950/50 py-1 fixed bottom-0 left-0 right-0 z-50 backdrop-blur-md bg-opacity-95 shadow-[0_-4px_20px_rgba(0,0,0,0.8)]">
+        <div class="grid grid-cols-5 text-center text-[10px]">
+            <button onclick="gantiTab('berita')" id="btn-berita" class="nav-btn flex flex-col items-center gap-0.5 text-amber-400 transition group py-0.5">
+                <span class="text-sm group-hover:scale-110 transition-transform">📰</span>
+                <span class="font-medium tracking-wide">Berita</span>
+            </button>
+            <button onclick="gantiTab('saham')" id="btn-saham" class="nav-btn flex flex-col items-center gap-0.5 text-slate-400 hover:text-amber-300 transition group py-0.5">
+                <span class="text-sm group-hover:scale-110 transition-transform">📈</span>
+                <span class="font-medium tracking-wide">Saham</span>
+            </button>
+            <button onclick="gantiTab('cari')" id="btn-cari" class="nav-btn flex flex-col items-center gap-0.5 text-slate-400 hover:text-amber-300 transition group py-0.5">
+                <span class="text-sm group-hover:scale-110 transition-transform">🔎</span>
+                <span class="font-medium tracking-wide">Cari</span>
+            </button>
+            <button onclick="gantiTab('kalkulator')" id="btn-kalkulator" class="nav-btn flex flex-col items-center gap-0.5 text-slate-400 hover:text-amber-300 transition group py-0.5">
+                <span class="text-sm group-hover:scale-110 transition-transform">🧮</span>
+                <span class="font-medium tracking-wide">Kalk</span>
+            </button>
+            <button onclick="gantiTab('login')" id="btn-login" class="nav-btn flex flex-col items-center gap-0.5 text-slate-400 hover:text-amber-300 transition group py-0.5">
+                <span class="text-sm group-hover:scale-110 transition-transform">💼</span>
+                <span class="font-medium tracking-wide">Login</span>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        function gantiTab(tab) {
+            const views = ['berita', 'saham', 'cari', 'kalkulator', 'login'];
+            views.forEach(v => {
+                document.getElementById('view-' + v).classList.add('hidden');
+                let btn = document.getElementById('btn-' + v);
+                btn.classList.remove('text-amber-400');
+                btn.classList.add('text-slate-400');
+            });
+            document.getElementById('view-' + tab).classList.remove('hidden');
+            let activeBtn = document.getElementById('btn-' + tab);
+            activeBtn.classList.add('text-amber-400');
+            activeBtn.classList.remove('text-slate-400');
+        }
+
+        function gantiSekuritas(url, element) {
+            document.getElementById('iframe-login').src = url;
+            let tombols = document.querySelectorAll('.btn-sekuritas');
+            tombols.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'border-blue-400/30');
+                btn.classList.add('bg-[#0b0f19]', 'text-slate-300', 'border', 'border-blue-950/60');
+            });
+            element.classList.remove('bg-[#0b0f19]', 'text-slate-300', 'border', 'border-blue-950/60');
+            element.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'border-blue-400/30');
+        }
+    </script>
+</body>
+</html>
